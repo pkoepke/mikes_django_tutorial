@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Articles</h1> <!-- regular HTML up to this point -->
+{% if articles.count > 0 %}
+  {% for article in articles %} <!-- Python for loop. Loops through the dict/list/tuple/array that you passed in the variable 'articles' -->
+    <div> <!-- The HTML wthin the for loop gets repeated for every item -->
+      <h2><a href="/articles/get/{{ article.id }}/">{{ article.title }}</a></h2> <!-- get the id and title values from the article dict/list/etc -->
+      <p>{{ article.body | lower |truncatewords:"10" }}</p> <!-- get the body element, then truncate it. Pipes separate filters. 'lower' converts to lowercase, there's also 'upper' -->
+      <!-- <p>{{ article.body }}</p> Note that adding logic in a comment like this still results in the logic being evaluated, it will just appear in a comment on the page. -->
+    </div>
+  {% endfor %} <!-- end the for loop -->
+{% else %}
+  <p>No articles to show!</p>
+{% endif %}
+{% endblock %}

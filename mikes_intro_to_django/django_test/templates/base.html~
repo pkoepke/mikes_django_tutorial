@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>{% block title %}My Base Template{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css" %}" >
+</head>
+<body>
+  <div id="page">
+    <div id="sidebar">
+      {% block sidebar %}
+        <ul>
+          <li><a href="/articles/all">Articles</a></li>
+          <li><a href="/admin/">Admin</a></li>
+        </ul>
+      {% endblock %}
+    </div>
+    <div id="content">
+      {% block content %}This is the content block. This will be overridden by content in the pages, so this text will be removed from the final page and replaced with the page's content.{% endblock %}
+      <img src="{% static "assets/python-logo.jpg" %}" />
+    </div>
+  </div>
+</body>

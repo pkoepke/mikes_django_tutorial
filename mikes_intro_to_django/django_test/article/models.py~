@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+# django.db.models.Model is a class that all Django models should inherit from (I think). 
 class Article(models.Model):
     # members of the class
     title = models.CharField(max_length = 200)

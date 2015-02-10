@@ -55,8 +55,8 @@ WSGI_APPLICATION = 'django_test.wsgi.application'
 
 TEMPLATE_DIRS = (
     # relative paths are not allowed, but you can use BASE_DIR to do the same thing
-    '/home/paul/Programming/mikes_django_tutorial/mikes_intro_to_django/django_test/templates',
-    # os.path.join(BASE_DIR, 'templates'), # hopefully this relative URL will work
+    os.path.join(BASE_DIR, 'templates'),
+#    os.path.join(BASE_DIR, '/article/templates'),
 )
 
 # Database
@@ -87,4 +87,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+# Tutorial had STATIC_ROOT = '', but that wasn't working for me.
+STATIC_ROOT = '/home/paul/Programming/mikes_django_tutorial/mikes_intro_to_django/django_test/static/'
+
+# This is what the tutorial asked for, and it worked.
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    ('assets', os.path.join(BASE_DIR, 'static/assets') ), # /static/assets didn't work, it has to be static/assets without the leading slash.
+    # The tutorial left out the /assets/ part, but that caused an error when running 'python manage.py collectstatic': "django.core.exceptions.ImproperlyConfigured: The STATICFILES_DIRS setting should not contain the STATIC_ROOT setting"
+)
